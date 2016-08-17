@@ -10,22 +10,30 @@
 #include <iostream>
 #include <cmath>
 #include <random>
+#include <list>
+#include "View.h"
+#include "Budget.h"
 
 class Simulate
 {
 public:
 	Simulate();
+	Simulate(int months);
 	~Simulate();
-	int getTotalExpenses();
-	int getMoneyLeftOver();
 	int generateRandomBetween(int min, int max);
 	double normalDistribution(double mean, double stdDev);
-	void updateSimulation();
+	bool getIsComplete() const;
+	void setIsComplete(bool is_complete);
+	void simulate(int totalMonths);
+	View* getView() const;
+	void setView(View* view);
+	Budget* getBudget() const;
+	void setBudget(Budget* budget);
+
 private:
-	int savingsPercent;
-	int salary;		// should this be apart of this class? I was thinking a "user" class maybe
-	int totalSavings;
-	int leftOverMoney;
-	int expenses[];
+	bool isComplete = false;
+protected:
+	View* view;
+	Budget* budget;
 };
 
